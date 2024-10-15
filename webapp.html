@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Splitter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column; /* Align children vertically */
+            align-items: center;    /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 100vh;          /* Full viewport height */
+            margin: 0;              /* Remove default margin */
+            font-family: Arial, sans-serif; /* Optional: Set a font family */
+            background-color: #f0f8ff;
+        }
+
+        form {
+            text-align: center; /* Center text in the form */
+            margin-bottom: 20px; /* Space below the form */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        #emailDetails {
+            margin-top: 20px; /* Space above email details */
+        }
+        .error-message {
+            color: red; /* Style for error message */
+        }
+    </style>
+
+</head>
+<body >
+
+    <h1>Email Splitter Web App</h1>
+
+    <!-- Form to take email input -->
+    <form method="POST">
+        <label for="email">Enter your email:</label>
+        <input type="text" id="email" name="email" required>
+        <button type="submit">Submit</button>
+        <button onclick="clearInput()">Clear</button>
+    </form>
+
+     <!-- Display error message if the email is not valid -->
+    <!-- Display error message if the email is not valid -->
+        <div id="errorMessage" style="display: {% if error_message %} block {% else %} none {% endif %};">
+            <p class="error-message">{{ error_message }}</p>
+        </div>
+
+
+    <!-- Display username and domain after submission -->
+
+    {% if username and domain %}
+        <div id="emailDetails">
+            <h2>Email Details</h2>
+            <p>Hello, your username is "{{ username }}" & domain is "{{ domain }}".</p>
+        </div>
+    {% endif %}
+<script>
+        // JavaScript function to clear the input field
+            function clearInput() {
+            document.getElementById('email').value = '';  // Clear the input field
+            document.getElementById('emailDetails').style.display = 'none';  // Hide the email details section
+            document.getElementById('errorMessage').style.display = 'none';  // Hide the error message
+        }
+    </script>
+</body>
+</html>
